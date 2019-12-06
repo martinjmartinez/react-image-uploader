@@ -211,7 +211,7 @@ class Home extends Component {
                   <span>UPLOAD</span>
                 </label>
                 <p className="requirements-text">Upload Size: Max 1 GB</p>
-                <p className="requirements-text">File Types: jpeg | jpg | png  | jpe </p>
+                <p className="requirements-text">File Types: jpeg | jpg | png  | jpe | gif </p>
               </div>}
           </div>
         </div>

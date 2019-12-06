@@ -206,12 +206,12 @@ class Home extends Component {
             {!this.state.isLoading &&
               <div>
                 <p className="card-text">Please upload your Designs</p>
-                <input type="file" name="file" id="file" accept="image/*" onChange={this.onFileSelected} />
+                <input type="file" name="file" id="file" accept="image/jpeg, image/png, image/gif " onChange={this.onFileSelected} />
                 <label htmlFor="file">
                   <span>UPLOAD</span>
                 </label>
                 <p className="requirements-text">Upload Size: Max 1 GB</p>
-                <p className="requirements-text">File Types: jpeg | jpg | png | gif | svg | jpe | ico</p>
+                <p className="requirements-text">File Types: jpeg | jpg | png  | jpe </p>
               </div>}
           </div>
         </div>

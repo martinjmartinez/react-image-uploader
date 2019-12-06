@@ -37,12 +37,11 @@ class Home extends Component {
 
   //FETCH ALL THE IMAGES FROM DYNAMODB AND PRESENT IT ON THE PAGE.
   getAllImages = async () => {
-    let data = {
+    const data = {
       "TableName": process.env.REACT_APP_TABLE_NAME,
       "ReturnConsumedCapacity": "TOTAL"
     }
 
-    console.log(process.env.REACT_APP_DATABASE_URL);
     const response = await axios.get(process.env.REACT_APP_DATABASE_URL, data);
     const images = response["data"]["Items"].map((item) => item.url.S);
 
@@ -64,8 +63,8 @@ class Home extends Component {
 
   //VALIDATED THE FILE MEETS ALL THE RESTRICTIONS.
   validateFile = () => {
-    let file = this.state.file;
-    let MAX_SIZE = 1073741824 // 1 GB in bytes
+    const file = this.state.file;
+    const MAX_SIZE = 1073741824 // 1 GB in bytes
     let isValid = false;
 
     if (!file) {
@@ -109,8 +108,8 @@ class Home extends Component {
       isFetchingThumbnail: true
     })
 
-    let data = { "url": response['key'] };
-    let images = this.state.thumbnailUrls;
+    const data = { "url": response['key'] };
+    const images = this.state.thumbnailUrls;
 
     await axios.post(process.env.REACT_APP_DATABASE_URL, data);
 
@@ -167,6 +166,7 @@ class Home extends Component {
     const images = this.state.thumbnailUrls.map((image) => {
       const urlOriginal = process.env.REACT_APP_BUCKET_ORIGINAL_URL + image;
       const urlThumbnail = process.env.REACT_APP_BUCKET_THUMBNAIL_URL + image;
+
       return <a href={urlOriginal}>
         <img className="thumbnail-img" src={urlThumbnail} alt="Download Image" onError={this.getAllImages}></img>
       </a>
@@ -176,12 +176,7 @@ class Home extends Component {
   }
 
   ShowStatus = () => {
-    let message;
-    if (!this.state.isFetchingThumbnail) {
-      message = "Uploading...";
-    } else {
-      message = "Creating Thumbnail..."
-    }
+    let message = !this.state.isFetchingThumbnail ? "Uploading..." : "Creating Thumbnail...";
 
     return <p className="requirements-text">{message}</p>;
   }

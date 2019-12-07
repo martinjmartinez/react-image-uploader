@@ -55,7 +55,11 @@ class Home extends Component {
   //generate the thumbnail in another bucket
   uploadImage = () => {
     if (this.validateFile()) {
-      S3FileUpload.uploadFile(this.state.file, config)
+      const data = this.state.file;
+      const ext = data.name.slice((data.name.lastIndexOf(".") - 1 >>> 0) + 2);
+      const myNewFile = new File([data], `${Date.now()}.${ext}`, {type: data.type});
+      console.log(myNewFile);
+      S3FileUpload.uploadFile(myNewFile, config)
         .then(data => this.handleSuccess(data))
         .catch(err => this.handleError(err))
     }
